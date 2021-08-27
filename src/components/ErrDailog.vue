@@ -53,8 +53,9 @@ export default {
         this.$message.error(`请上传.js.map 文件！`);
         return;
       }
+      console.log(file.name.substring(0, file.name.indexOf(".") - 1));
       if (
-        file.name.substring(0, file.name.lastIndexOf(".") - 1) !==
+        file.name.substring(0, file.name.indexOf(".")) !==
         this.stackFrame.fileName
       ) {
         this.$message.error(`请上传对应的map文件`);
