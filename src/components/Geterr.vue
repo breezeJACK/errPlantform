@@ -19,6 +19,9 @@
     <el-button @click="uploadFile" type="primary" style="margin-top: 20px"
       >上传map文件</el-button
     >
+    <el-button @click="throwerr" type="primary" style="margin-top: 20px"
+      >抛出错误</el-button
+    >
     <ErrDailog ref="err" @lookSource="lookSource" />
     <pre class="errCode" v-html="preLineStartEnd()"></pre>
   </div>
@@ -76,6 +79,11 @@ export default {
       if (!str || str.length == 0) return "";
       return str;
     },
+    throwerr(){
+      let a = null
+      a.b.c =1
+     
+    }
   },
 };
 </script>
