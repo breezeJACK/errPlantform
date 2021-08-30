@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.5",
     "error-stack-parser": "^2.0.6",
     "koa": "^2.13.1",
+    "koa-router": "^10.1.1",
     "koa-static": "^5.0.0",
     "source-map-js": "^0.6.2",
     "vue": "^2.6.11"

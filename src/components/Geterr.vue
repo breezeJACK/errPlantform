@@ -29,7 +29,7 @@
 
 <script>
 import ErrDailog from "@/components/ErrDailog.vue";
-
+import axios from "axios"
 export default {
   name: "geterr",
   components: { ErrDailog },
@@ -79,12 +79,14 @@ export default {
       if (!str || str.length == 0) return "";
       return str;
     },
-    throwerr(){
-      let a = null
-      a.b.c =1
-     
+   async throwerr(){
+      //语法错误
+      // let a = null
+      // a.b.c =1
+    const data =await  axios.get("/err")
+    console.log(data)
     }
-  },
+  }
 };
 </script>
 
