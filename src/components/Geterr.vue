@@ -22,6 +22,7 @@
     <el-button @click="throwerr" type="primary" style="margin-top: 20px"
       >抛出错误</el-button
     >
+    <!-- <img src="http://localhost:3000/a.jpg" /> -->
     <ErrDailog ref="err" @lookSource="lookSource" />
     <pre class="errCode" v-html="preLineStartEnd()"></pre>
   </div>
@@ -29,7 +30,9 @@
 
 <script>
 import ErrDailog from "@/components/ErrDailog.vue";
-import axios from "axios"
+// import err from "./err";
+
+import axios from "axios";
 export default {
   name: "geterr",
   components: { ErrDailog },
@@ -79,14 +82,17 @@ export default {
       if (!str || str.length == 0) return "";
       return str;
     },
-   async throwerr(){
-      //语法错误
-      // let a = null
-      // a.b.c =1
-    const data =await  axios.get("/err")
-    console.log(data)
-    }
-  }
+    throwerr() {
+      // let a = null;
+      // a.b.c = 1;
+      // const data = await axios.get("/err");
+      // console.log(data);
+      axios.get("/err").then((res) => {
+        let a = null;
+        a.b.c = 1;
+      });
+    },
+  },
 };
 </script>
 

@@ -76,7 +76,6 @@ export default {
       return false;
     },
     lookSource(source_map, line, column) {
-      debugger;
       try {
         const consumer = new sourceMap.SourceMapConsumer(source_map);
         const lookUpRes = consumer.originalPositionFor({

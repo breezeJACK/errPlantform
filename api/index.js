@@ -1,12 +1,15 @@
 import axios from "axios"
+import HttpLogs from "../logs/httplogs"
 
-axios.interceptors.response.use( response=> {
+axios.interceptors.response.use(response => {
 
-    return response;
-  }, error =>{
-    // 对响应错误做点什么
-    console.log("对相应数据错误进行上报处理")
-    return Promise.reject(error);
-  })
+  return response;
+}, error => {
+
+  const httplogs = new HttpLogs("ceshi", "httperr", error.config.url, error.message)
+  console.log(httplogs, "httplogs")
+  //此处不能返回reject 否则会触发unhandledrejectionLogs
+  // return Promise.reject(error);
+})
 
 export default axios

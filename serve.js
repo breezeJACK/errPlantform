@@ -1,8 +1,10 @@
-const Koa =require("koa")
+const Koa = require("koa")
 
 const app = new Koa()
 const path = require('path');
 const serve = require('koa-static');
-const main = serve(path.join(__dirname+'/dist'))
+const main = serve(path.join(__dirname + '/dist'))
 app.use(main);
-app.listen(3000);
+app.listen(3000, () => {
+    console.log("3000端口 已启动")
+});
