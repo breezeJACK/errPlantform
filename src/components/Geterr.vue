@@ -87,10 +87,10 @@ export default {
       // a.b.c = 1;
       // const data = await axios.get("/err");
       // console.log(data);
-      axios.get("/err").then((res) => {
-        let a = null;
-        a.b.c = 1;
-      });
+      // axios.get("/err").then((res) => {
+      //   let a = null;
+      //   a.b.c = 1;
+      // });
     },
   },
 };
