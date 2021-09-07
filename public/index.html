@@ -12,18 +12,40 @@
   </title>
 </head>
 <script>
-  const originAddEventListener = EventTarget.prototype.addEventListener;
-  EventTarget.prototype.addEventListener = function (type, listener, options) {
-    const wrappedListener = function (...args) {
-      try {
-        return listener.apply(this, args);
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      // 所以Service Worker只是一个挂在navigator对象上的HTML5 API而已
+      navigator.serviceWorker.register('/serviceWorker.js').then(function (registration) {
+        console.log('我注册成功了666');
+      }, function (err) {
+        console.log('我注册失败了');
+      });
+    });
+
+    // 页面 JavaScript 代码
+    if (navigator.serviceWorker.controller !== null) {
+      let HEARTBEAT_INTERVAL = 5 * 1000; // 每五秒发一次心跳
+      let sessionId = Date.now();
+      let heartbeat = function () {
+        navigator.serviceWorker.controller.postMessage({
+          type: 'heartbeat',
+          id: sessionId,
+          data: {} // 附加信息，如果页面 crash，上报的附加数据
+        });
       }
-      catch (err) {
-        throw err;
-      }
+      window.addEventListener("beforeunload", function () {
+        navigator.serviceWorker.controller.postMessage({
+          type: 'unload',
+          id: sessionId
+        });
+      });
+      setInterval(heartbeat, HEARTBEAT_INTERVAL);
+      heartbeat();
     }
-    return originAddEventListener.call(this, type, wrappedListener, options);
   }
+
+
 </script>
 
 <body>
@@ -35,6 +57,7 @@
 
   <!-- built files will be auto injected -->
 </body>
+
 
 
 

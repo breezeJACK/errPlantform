@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Geterr msg="Welcome to Your Vue.js App" />
+    <router-view />
   </div>
 </template>
 

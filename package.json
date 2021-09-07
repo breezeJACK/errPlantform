@@ -16,7 +16,8 @@
     "koa-router": "^10.1.1",
     "koa-static": "^5.0.0",
     "source-map-js": "^0.6.2",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
