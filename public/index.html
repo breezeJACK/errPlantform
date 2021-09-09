@@ -11,61 +11,44 @@
     <%= htmlWebpackPlugin.options.title %>
   </title>
 </head>
+
 <script>
-var lastTime = performance.now();
-var frame = 0;
-var lastFameTime = performance.now();
-var loop = function(time) {
-
-    var now =  performance.now();
-    var fs = (now - lastFameTime);   // 距上次的时间
-    lastFameTime = now;
-    var fps = Math.round(1000/fs);   // FPS
-    console.log(fps)
-    frame++;
-    if (now > 1000 + lastTime) {    // 两次不连续，间隔时间超过1s
-        var fps = Math.round( ( frame * 1000 ) / ( now - lastTime ) );
-        frame = 0;    
-        lastTime = now;    
-      
-    };        
-    window.requestAnimationFrame(loop);   
-}
-window.requestAnimationFrame(loop);   
 /*   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      // 所以Service Worker只是一个挂在navigator对象上的HTML5 API而已
-      navigator.serviceWorker.register('/serviceWorker.js').then(function (registration) {
-        console.log('我注册成功了666');
-      }, function (err) {
-        console.log('我注册失败了');
-      });
-    });
-
-    // 页面 JavaScript 代码
-    if (navigator.serviceWorker.controller !== null) {
-      let HEARTBEAT_INTERVAL = 5 * 1000; // 每五秒发一次心跳
-      let sessionId = Date.now();
-      let heartbeat = function () {
-        navigator.serviceWorker.controller.postMessage({
-          type: 'heartbeat',
-          id: sessionId,
-          data: {} // 附加信息，如果页面 crash，上报的附加数据
+      window.addEventListener('load', function () {
+        // 所以Service Worker只是一个挂在navigator对象上的HTML5 API而已
+        navigator.serviceWorker.register('/serviceWorker.js').then(function (registration) {
+          console.log('我注册成功了666');
+        }, function (err) {
+          console.log('我注册失败了');
         });
+      });
+  
+      // 页面 JavaScript 代码
+      if (navigator.serviceWorker.controller !== null) {
+        let HEARTBEAT_INTERVAL = 5 * 1000; // 每五秒发一次心跳
+        let sessionId = Date.now();
+        let heartbeat = function () {
+          navigator.serviceWorker.controller.postMessage({
+            type: 'heartbeat',
+            id: sessionId,
+            data: {} // 附加信息，如果页面 crash，上报的附加数据
+          });
+        }
+        window.addEventListener("beforeunload", function () {
+          navigator.serviceWorker.controller.postMessage({
+            type: 'unload',
+            id: sessionId
+          });
+        });
+        setInterval(heartbeat, HEARTBEAT_INTERVAL);
+        heartbeat();
       }
-      window.addEventListener("beforeunload", function () {
-        navigator.serviceWorker.controller.postMessage({
-          type: 'unload',
-          id: sessionId
-        });
-      });
-      setInterval(heartbeat, HEARTBEAT_INTERVAL);
-      heartbeat();
     }
-  }
- */
+   */
 
 </script>
+<script src="homepage.js"></script>
+<script src="fps.js"></script>
 
 <body>
   <noscript>
